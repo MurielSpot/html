@@ -1,1 +1,26 @@
-
+<!--
+  padding 内边距 内填充
+  
+  注意： 负值是不允许的。
+  
+  padding-top
+  padding-right
+  padding-left
+  padding-bottom
+  
+  padding的复合写法
+  padding：10px；一个值代表 上下左右都是10px
+  padding：10px 20px；两个值 第一个表上下 第二个左右
+  padding：10px 20px 40px；三个值 第一个上 第二个左右 第三个下
+  padding：10px 20px 40px 80px；四个值 上 右 下 左
+  
+  值	      说明
+  length   规定以具体单位计的填充值，比如像素、厘米等。默认值是 0px
+  %	       规定基于父元素的宽度的百分比的填充
+  inherit  指定应该从父元素继承padding
+  
+  默认值：	0
+  继承：	no
+  版本：	CSS1
+  JavaScript 语法：	object.style.padding="10px 5px"
+-->
