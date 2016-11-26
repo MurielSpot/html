@@ -1,0 +1,33 @@
+<!--
+  border边框
+  
+  复合写法：
+  border：border-width border-style border-color;
+  
+  border-width 边框宽度
+  border-style 边框样式 solid 实线 dashed 虚线 dotted 点线 （点线ie6不认）
+  border-color 边框颜色 英文单词 十六进制 rgb
+-->
+
+<!doctype html>
+<html lang="UTF-8">
+<head>
+	<title>a.html</title>
+	<style>
+		#box1{
+			height: 400px;
+			width: 400px;
+			background: blue;
+			border: 1px dashed red;
+			border-right-width: 4px;
+			border-left-width: 4px;
+			border-color:#0ff;
+		}
+	</style>
+</head>
+	<body>
+		<div id="box1">
+			
+		</div>
+	</body>
+</html>
