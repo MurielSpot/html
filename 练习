@@ -1,0 +1,51 @@
+<!--
+  鼠标右键菜单制作，较粗陋
+-->
+<!doctype html>
+<html lang="UTF-8">
+<head>
+	<title>a.html</title>
+	<style>
+		div{
+			width: 180px;
+			background: #e8e6e6;
+			overflow: hidden;
+		}
+		#box1{
+			height: 20px;                                       
+			width: 120px;
+
+			border:none;
+			border-top: 1px solid #d1d1d1;
+
+			padding:2px 20px;
+			padding-left: 40px;
+		}
+		#box1:hover{
+			border:1px solid #a2b2e8;
+			padding:2px 19px 1px 39px;
+
+		}                                          
+	</style>
+</head>
+	<body>
+		<div>
+			<div id="box1">查看</div>
+			<div id="box1">排序方式</div>
+			<div id="box1">刷新</div>
+			<div id="box1">粘贴</div>
+			<div id="box1">粘贴快捷方式</div>
+
+			<div id="box1">撤销 删除</div>
+			<div id="box1">open ？</div>
+			<div id="box1">open i？</div>
+			<div id="box1">图形属性</div>
+			<div id="box1">图形选项</div>
+
+			<div id="box1">新建</div>
+			<div id="box1">屏幕分辨率</div>
+			<div id="box1">小工具</div>
+			<div id="box1">个性化</div>
+		</div>
+	</body>
+</html>
