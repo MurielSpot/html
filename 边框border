@@ -7,6 +7,15 @@
   border-width 边框宽度
   border-style 边框样式 solid 实线 dashed 虚线 dotted 点线 （点线ie6不认）
   border-color 边框颜色 英文单词 十六进制 rgb
+  
+  border-top
+  border-right
+  border-left
+  border-bottom
+  
+  border-radius 圆角
+  
+  透明度
 -->
 
 <!doctype html>
@@ -22,6 +31,10 @@
 			border-right-width: 4px;
 			border-left-width: 4px;
 			border-color:#0ff;
+
+			border-top:200px solid red;
+
+			border-radius: 50%;
 		}
 	</style>
 </head>
