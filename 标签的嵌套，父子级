@@ -1,0 +1,80 @@
+<!--
+  标签的嵌套 确定父子级关系
+  
+  1.第一个子级的margin-top会在特定情况下穿透父级
+      规避方法：
+        1.给父级加边框
+        2.给父级加overflow：hidden
+        3.不要用margin-top，用父级的padding-top代替
+  2.兄弟关系的margin-top和margin-bottom 会叠压
+-->
+
+<!doctype html>
+<html lang="UTF-8">
+<head>
+	<title>a.html</title>
+	<style>
+		div{
+			height: 100px;
+			width: 800px;
+			background: blue;
+
+			border:5px solid yellow;
+		}
+		#box1{
+			height: 95px;
+			width: 400px;
+			background: blue;
+			border: 2px dashed red;
+
+			margin-top:10px;
+		}
+		#box2{
+			height: 95px;
+			width: 400px;
+			background: blue;
+			border: 2px dashed yellow;		
+		}
+	</style>
+</head>
+	<body>
+<!--
+div加边框
+border:5px solid yellow;
+-->
+	</br>
+	<div>
+		<div id="box1">
+		</div>
+	</div>
+<!--
+父级加
+overflow: hidden;
+-->
+	</br>
+	<div>
+		<div id="box1">
+		</div>
+	</div>
+<!--
+父级padding-top代替
+-->
+	</br>
+	<div>
+		<div id="box1">
+		</div>
+	</div>
+
+<!--
+叠压
+box1 margin-bottom:20px;
+box2 margin-top:40px;
+-->
+	</br>
+	<div id="box1">
+	</div>
+	<div id="box2">
+	</div>
+
+	</body>
+</html>
