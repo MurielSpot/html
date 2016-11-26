@@ -7,6 +7,20 @@
   margin-bottom
   
   复合写法
-  margin：10px； 一个值 上下左右
-  margin
+  margin：10px；一个值代表 上下左右都是10px
+  margin：10px 20px；两个值 第一个表上下 第二个左右
+  margin：10px 20px 40px；三个值 第一个上 第二个左右 第三个下
+  margin：10px 20px 40px 80px；四个值 上 右 下 左
+  
+  语法
+    设置 margin 属性：
+    Object.style.margin="%|length|auto|inherit"
+    返回 margin 属性：
+    Object.style.margin
+
+  值	     描述
+  %	      定义基于父元素宽度的百分比外边距。
+  length	使用 px、cm 等单位定义外边距的宽度。
+  auto	  浏览器设定的外边距（所有四个外边距是相等的）。
+  inherit	外边距从父元素继承。
 -->
