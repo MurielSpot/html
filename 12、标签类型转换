@@ -1,0 +1,9 @@
+<!--
+  标签类型的转换
+			显示为无：display:none;
+
+			块属性 display:block;
+			内联属性
+				内联 display:inline;
+				内联块 display:inline-block;
+-->
