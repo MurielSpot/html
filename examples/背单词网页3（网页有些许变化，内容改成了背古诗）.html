@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        html{
+            height:100%;
+			width:100%;
+			position:absolute;
+        }
+		body{
+			height:95%;
+			width:95%;
+			margin:auto;
+		}
+		.div_page1{
+			margin:auto;
+			height:30%;
+			position:relative;
+		}
+		.div_page2{
+			margin:auto;
+			position:relative;
+			
+			overflow-y:scroll;
+		}
+		.button_text{
+			border:solid;
+			border-radius:10px;
+			background-color:#ffffff;
+			color:#000000;
+			font-size:30px;
+			text-align:center;
+			cursor: pointer;
+			transition-duration: 0.3s;
+		
+			position:absolute;
+			height:39px;
+			width:39%;
+			margin:auto;
+			top: 0; 
+			left: 0; 
+			bottom: 0; 
+			right: 0;
+		}
+		.button_text:hover{
+			color:#000000;
+			background-color: #ffd800;
+		}
+        .vocabulary_text {
+			position:absolute;
+			display:inline-block;
+			height:65px;
+			margin:auto;
+			top: 0; 
+			left: 0; 
+			bottom: 0; 
+			right: 0;
+
+            font-size: 30px;
+            text-align: center;
+
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        var total_vocabulary = new Array(
+            //9个
+            ["菩萨蛮·闺情【李白】<br/>", "平林漠漠烟如织，寒山一带伤心碧。<br/>暝色入高楼，有人楼上愁。<br/>玉阶空伫立，宿鸟归飞急。<br/>何处是归程，长亭更短亭。"],
+            ["寒菊 / 画菊【宋代：郑思肖】<br/>", "花开不并百花丛，独立疏篱趣未穷。<br/>宁可枝头抱香死，何曾吹落北风中。"],
+            ["金陵晚望【唐代：高蟾】<br/>", "曾伴浮云归晚翠，犹陪落日泛秋声。<br/>世间无限丹青手，一片伤心画不成。"],
+            ["南园十三首·其五【唐代：李贺】<br/>", "男儿何不带吴钩，收取关山五十州。<br/>请君暂上凌烟阁，若个书生万户侯？"],
+        );
+		total_total=total_vocabulary.length;
+
+        //应为从数组里取值比较容易,所以一开始用array来存单词了,实际上这里用集合会更高效.但是一旦改为集合,许多函数都要改.
+        var vocabulary = new Array();
+		total = vocabulary.length;
+        function getTodayVocabulary(index) {
+			if(index===1){
+			    //取所有单词.
+				for(var i=0;i<total_total;i++){
+					vocabulary.push(total_vocabulary[i]);
+				}
+			}else if(index===2){
+                //取最近的单词,需手动设置.
+                TODAY_BEGIN = total_total-1
+			    TODAY_END=total_total
+			
+				for(var i=TODAY_BEGIN;i<TODAY_END;i++){
+					vocabulary.push(total_vocabulary[i]);
+				}
+			}else if(index===3){
+			    //取随机单词,取多少个需要手动设置.
+                AMOUNT = 2;
+                //需要一个set判断某个单词是否重复读取!
+                var tmp_set = new Set();
+				//当选区的单词小于制定数目,且总单词表里的单词没有被取完时,就继续取.
+                while (vocabulary.length < AMOUNT && vocabulary.length < total_total) {
+                    i = Math.floor(Math.random() * total_total);
+                    if (!tmp_set.has(i)) {
+                        vocabulary.push(total_vocabulary[i]);
+                        tmp_set.add(i);
+                    }
+				}
+			}
+			//之前计算出的total还是0,这次需要重新计算.
+			total=vocabulary.length;
+            outermost.innerHTML = '<div class="div_page2" style="height:70%"><div id="haha" class="vocabulary_text" onclick="displayVocabulary(this)">开始,共' + total +'首古诗</div></div><div class="div_page2" style="height:30%"><div class="button_text" onclick="masterVocabulary(this)">已背诵0首古诗</div>'
+		}
+        var mastered = new Set();
+        last = -1;//暂时记录上次访问的单词,为了显示汉语翻译而设置这个变量.
+        now = -1;//此时访问的单词,除了刚开始时会等于-1,之后我记得都不会等于-1.
+        function displayVocabulary(id) {
+            if (mastered.size < total) {
+                if (last === -1) {
+                    now = Math.floor(Math.random() * total);
+                    while (mastered.has(now)) {
+                        now = Math.floor(Math.random() * total);
+                    }
+                    id.innerHTML = vocabulary[now][0];
+                    last = now;
+                } else {
+                    id.innerHTML = vocabulary[now][0]+vocabulary[now][1];
+                    last = -1;
+                }
+            }
+        }
+        
+        function masterVocabulary(id) {
+            if (now != -1) {
+                mastered.add(now);
+                if (mastered.size < total) {
+                    id.innerHTML = "已背诵" + mastered.size + "个古诗";
+                    //显示下一个单词。
+                    while (mastered.has(now)) {
+                        now = Math.floor(Math.random() * total);
+                    }
+                    haha.innerHTML = vocabulary[now][0];//注意这里不是id.而是haha.
+                    last = now;
+                } else {
+                    str = (function () {
+                        str = new String();
+                        for (var i = 0; i < total; i++) {
+                            str += (i + 1) +".&emsp;"+ vocabulary[i][0] + "&emsp;&emsp;" + vocabulary[i][1] + "<br/>";
+                        }
+                        return str;
+                    })();
+                    outermost.innerHTML =
+                        '<div style="margin:20px auto 0px auto;width:60%;border-radius:8px;font-size:20px;text-align:center;background-color:#ffd800"> 棒棒哒，已背完所有' + total + '首古诗ヾ(●´∀｀●) </div>' + '<div class="vocabulary_display" style= "text-align:left;font-size:20px;padding:15px;" > ' + str + '</div>';
+                }
+            } else {
+                displayVocabulary(haha);
+            }
+        }
+    </script>
+</head>
+<body style="height: 100%;">
+    <div id="outermost" style="height:100%;">
+        <div class="div_page1" onclick="getTodayVocabulary(1)">
+			<div class="button_text">全部古诗</div>
+		</div>
+		<div class="div_page1">
+			<div class="button_text" onclick="getTodayVocabulary(2)">今日古诗</div>
+		</div>
+		<div class="div_page1">
+			<div class="button_text" onclick="getTodayVocabulary(3)">随机</div>
+		</div>
+    </div>
+</body>
+</html>
