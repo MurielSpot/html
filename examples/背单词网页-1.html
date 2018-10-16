@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        html{
+            height:95%;
+        }
+    </style>
+    <script>
+        var vocabulary = new Array(
+            ["defined", "a.明确的,清晰的"],
+            ["proposition", "n.命题，主张，建议"],
+            ["compound", "a.复合的，混合的"],
+            ["coordinate", "a.并列的，同等的"],
+            ["learn A by filtering A through B", "通过A来理解B"],
+            ["have an easier time watching movies", "（语境：学习英语之后）：更容易看（英语）电影"],
+            ["across the board", "全面的，包括一切的"],
+            ["unpretentious", "adj.谦逊的,不炫耀的,朴实无华的"],
+            ["impulsive","adj.冲动的,任性的;[物]瞬动的,冲击的"],
+        );
+        total = vocabulary.length;
+        var mastered = new Set();
+
+        last = -1;
+        now = -1;
+
+        function displayVocabulary(id) {
+            if (mastered.size < total) {
+                if (last === -1) {
+                    now = Math.floor(Math.random() * total);
+                    while (mastered.has(now)) {
+                        now = Math.floor(Math.random() * total);
+                    }
+                    id.innerHTML = vocabulary[now][0];
+                    last = now;
+                } else {
+                    id.innerHTML = vocabulary[now][1];
+                    last = -1;
+                }
+            } else {
+                var face = new Array(
+                    "٩(๑>◡<๑)۶ ",
+                    "(๑´ㅂ`๑) ",
+                    "(づ｡◕ᴗᴗ◕｡)づ",
+                    "((^∀^*)) ",
+                    "(〃'▽'〃)",
+                    "✿✿ヽ(ﾟ▽ﾟ)ノ✿完结撒花！",
+                    "ಠ_ಠ我有一个特异功能！！<br/>ಠ_ರೃ取下眼睛<br/>~ಠ_ಠ再装上去~",
+                    "<*))))))=<",
+                    "(°)#))<<",
+                );
+                index = Math.floor(Math.random() * face.length);
+                id.innerHTML = face[index];
+            }
+        }
+        
+        function masterVocabulary(id) {
+            if (now != -1) {
+                mastered.add(now);
+                if (mastered.size < total) {
+                    id.innerHTML = "已掌握" + mastered.size + "个单词";
+                    //显示下一个单词。
+                    while (mastered.has(now)) {
+                        now = Math.floor(Math.random() * total);
+                    }
+                    haha.innerHTML = vocabulary[now][0];//注意这里不是id.而是haha.
+                    last = now;
+                } else {
+                    haha.innerHTML = "ヾ(●´∀｀●) ";
+                    id.innerHTML = "棒棒哒，已背完所有" + total + "个单词";
+                }
+            }
+        }
+    </script>
+</head>
+<body style="height: 100%;padding: 10px;">
+    <div style="height:100%">
+        <div id="haha" style="height:28%;padding:39px;font-size:60px;text-align:center;" onclick="displayVocabulary(this)">开始</div>
+        <div style="background:#ffd800;border:solid;margin:5% 30%;font-size:30px;text-align:center;"  onclick="masterVocabulary(this)">已掌握0个单词</div>
+    </div>
+    
+
+</body>
+</html>
